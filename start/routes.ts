@@ -26,3 +26,8 @@ Route.get('/', async () => {
 
 Route.post('/register', 'AuthController.register')
 Route.post('/login', 'AuthController.login')
+Route.get("/maps", "MapsController.index")
+Route.get("/maps/:id", "MapsController.show")
+Route.group(() => {
+  Route.resource("maps", "MapsController").apiOnly().except(['index', 'show'])
+}).middleware('auth')
